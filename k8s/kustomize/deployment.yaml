@@ -10,6 +10,7 @@ spec:
     metadata:
       labels:
         app: conversao
+    replicas: 1
     spec:
       containers:
       - name: conversao
