@@ -1,31 +1,31 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: webpage-blue
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: webpage-blue
-  template:
-    metadata:
-      labels:
-        app: webpage-blue
-    spec:
-      containers:
-      - name: webpage-blue
-        image: fabricioveronez/pagina-exemplo:blue
-        ports:
-        - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: webpage-blue
-spec:
-  selector:
-    app: webpage-blue
-  ports:
-  - port: 80
-    targetPort: 80
-  type: ClusterIP
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: webpage-blue
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: webpage-blue
+#   template:
+#     metadata:
+#       labels:
+#         app: webpage-blue
+#     spec:
+#       containers:
+#       - name: webpage-blue
+#         image: fabricioveronez/pagina-exemplo:blue
+#         ports:
+#         - containerPort: 80
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: webpage-blue
+# spec:
+#   selector:
+#     app: webpage-blue
+#   ports:
+#   - port: 80
+#     targetPort: 80
+#   type: NodePort
