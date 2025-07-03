@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: conversao
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: conversao
@@ -10,7 +11,6 @@ spec:
     metadata:
       labels:
         app: conversao
-    replicas: 1
     spec:
       containers:
       - name: conversao
