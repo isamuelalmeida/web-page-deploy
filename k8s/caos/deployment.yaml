@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web
+  name: caos
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web
+      app: caos
   template:
     metadata:
       labels:
-        app: web
+        app: caos
     spec:
       containers:
-      - name: web
+      - name: caos
         image: fabricioveronez/simulador-do-caos
         ports:
         - containerPort: 3000
@@ -28,10 +28,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: web
+  name: caos
 spec:
   selector:
-    app: web
+    app: caos
   ports:
   - port: 80
     targetPort: 3000
@@ -40,14 +40,14 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: web
+  name: caos
 spec:
   maxReplicas: 10
   minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: web
+    name: caos
   metrics:
   - type: Resource
     resource:
