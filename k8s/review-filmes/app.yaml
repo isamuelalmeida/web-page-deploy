@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   selector:
     matchLabels:
@@ -22,10 +24,13 @@ spec:
             - name: MONGO_INITDB_ROOT_PASSWORD
               value: mongopwd
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
   name: mongodb-service
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   selector:
     app: mongodb
@@ -33,11 +38,17 @@ spec:
     - port: 27017
       targetPort: 27017
   type: ClusterIP
+
+
 ---
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: movies
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   selector:
     matchLabels:
@@ -64,10 +75,13 @@ spec:
           - name: MONGODB_PASSWORD
             value: mongopwd
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
   name: movies
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   selector:
     app: movies
